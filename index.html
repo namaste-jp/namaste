@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="logo.png" type="image/png">
+  <title>Namaste Indian Restaurant - Hiroshima</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #e63946;
+      --secondary: #2a9d8f;
+      --accent: #f4a261;
+      --light: #f8f9fa;
+      --dark: #333;
+      --gradient-start: #ffd6ba;
+      --gradient-end: #ffb4a2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .home-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f4a261;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin: 10px;
+    }
+
+    .home-button:hover {
+      background-color: #e63946;
+    }
+
+    .home-button i {
+      margin-right: 8px;
+    }
+
+    .lang-buttons button {
+      background: var(--accent);
+      border: none;
+      padding: 10px 15px;
+      margin-left: 8px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .lang-buttons button:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 500px;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      background: #d63031;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Discount Banner */
+    .discount-banner {
+      background-color: var(--primary);
+      color: white;
+      font-size: 1.3rem;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .discount-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* Menu Carousel */
+    .menu-carousel {
+      padding: 40px 0;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: var(--dark);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--secondary);
+      margin: 10px auto;
+      border-radius: 2px;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      background: white;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-slide p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-align: center;
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .carousel-button {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-button:hover {
+      background: #21867a;
+      transform: scale(1.1);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--secondary);
+      transform: scale(1.2);
+    }
+
+    /* Branches Section */
+    .branches {
+      padding: 40px 0;
+      margin-bottom: 40px;
+    }
+
+    .branches-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .branch {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .branch:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .branch img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .branch-content {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .branch-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .branch-address {
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .map-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 25px;
+      background-color: var(--secondary);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .map-button:hover {
+      background-color: #21867a;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 60px 0;
+      background: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+    }
+
+    .testimonials-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--accent);
+      opacity: 0.2;
+      font-family: serif;
+    }
+
+    .testimonial-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .rating-stars {
+      margin-bottom: 10px;
+      color: #FFD700;
+      /* Gold color for stars */
+    }
+
+    .rating-category {
+      display: inline-block;
+      margin-right: 15px;
+      font-size: 0.9rem;
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      color: #777;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .contact-info {
+      margin-bottom: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .contact-icon {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #444;
+      color: white;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #444;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero {
+        height: 400px;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 350px;
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .discount-banner {
+        font-size: 1.1rem;
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .logo-text {
+        display: none;
+      }
+
+      .hero {
+        height: 300px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .carousel-slide {
+        padding: 20px;
+      }
+
+      .carousel-slide p {
+        font-size: 1.1rem;
+      }
+
+      .branch-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo-container">
+          <img src="logo.png" alt="Namaste Indian Restaurant Logo" class="logo" />
+          <div class="logo-text">Namaste Indian Restaurant</div>
+          <a href="https://namaste-in.jp/" class="home-button">
+            <i class="fas fa-home"></i> Go to Home
+          </a>
+        </div>
+        <div class="lang-buttons">
+          <button onclick="setLang('en')">English</button>
+          <button onclick="setLang('jp')">日本語</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="discount-banner" id="discount-text">
+    🎉 20% OFF for Screenshot Holders — Valid at both branches!
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 id="hero-title">Authentic Indian Cuisine</h1>
+      <p id="hero-subtitle">Experience the vibrant flavors of India in the heart of Hiroshima</p>
+      <a href="#branches" class="cta-button" id="hero-button">Find Our Locations</a>
+    </div>
+  </section>
+
+  <section class="menu-carousel">
+    <div class="container">
+      <h2 class="section-title" id="carousel-title">Popular Dishes</h2>
+      <div class="carousel-container">
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-slide">
+            <img src="menu/butterchocken.avif" alt="Butter Chicken">
+            <p id="dish1-name">Butter Chicken</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="menu/biryani.JPG" alt="Chicken Biryani">
+            <p id="dish2-name">Chicken Biryani</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="menu/menu.jpg" alt="Course">
+            <p id="dish3-name">Course</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="menu/momo.png" alt="MOMO">
+            <p id="dish4-name">MOMO</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="menu/tandoori chciiken.jpg" alt="Tandoori Chicken">
+            <p id="dish5-name">Tandoori Chicken</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="menu/namaste set.jpg" alt="Namaste Set">
+            <p id="dish6-name">Namaste Set</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-button" id="prev-button">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-button" id="next-button">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+  </section>
+
+  <section class="branches" id="branches">
+    <div class="container">
+      <h2 class="section-title" id="branches-title">Our Locations</h2>
+      <div class="branches-container">
+        <div class="branch">
+          <img src="branch1.jpg" alt="Otemachi Branch">
+          <div class="branch-content">
+            <div class="branch-title" id="branch1-title">Namaste Indian Restaurant - Otemachi Branch</div>
+            <div class="branch-address" id="branch1-address">〒730-0051 Hiroshima, Naka Ward, Otemachi, 4 Chome−1−1
+              Otemachi Heiwa Building, 102号</div>
+            <a href="https://maps.app.goo.gl/juPHy2EdCEiWeaAy7" target="_blank" class="map-button">
+              <i class="fas fa-map-marker-alt"></i> <span id="map1btn">View on Google Maps</span>
+            </a>
+          </div>
+        </div>
+        <div class="branch">
+          <img src="branch2.jpg" alt="Hatchobori Branch">
+          <div class="branch-content">
+            <div class="branch-title" id="branch2-title">Namaste Indian Restaurant - Hatchobori Branch</div>
+            <div class="branch-address" id="branch2-address">〒730-0013 Hiroshima, Naka Ward, Hatchobori, 11−13 アロービル
+            </div>
+            <a href="https://maps.app.goo.gl/j65PK3QG5r8wJtJf6" target="_blank" class="map-button">
+              <i class="fas fa-map-marker-alt"></i> <span id="map2btn">View on Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title" id="testimonials-title">Customer Reviews</h2>
+      <div class="testimonials-container">
+        <div class="testimonial">
+          <div class="testimonial-content" id="testimonial1">
+            <div class="rating-stars">
+              <div class="rating-category">Overall: ★★★★★</div>
+              <div class="rating-category">Food: ★★★★★</div>
+              <div class="rating-category">Atmosphere: ★★★★★</div>
+              <div class="rating-category">Service: ★★★★★</div>
+            </div>
+            "The flavors transported me straight to India! The butter chicken was creamy and perfectly spiced. The staff
+            was incredibly welcoming and made our dining experience memorable."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Tanaka" class="author-avatar">
+            <div class="author-info">
+              <h4>Sarah Tanaka</h4>
+              <p>Regular Customer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-content" id="testimonial2">
+            <div class="rating-stars">
+              <div class="rating-category">Overall: ★★★★★</div>
+              <div class="rating-category">Food: ★★★★★</div>
+              <div class="rating-category">Atmosphere: ★★★★★</div>
+              <div class="rating-category">Service: ★★★★★</div>
+            </div>
+            "Authentic Indian food at its best! The biryani was flavorful with tender chicken. The ambiance is warm and
+            inviting. Highly recommend for anyone craving real Indian cuisine."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kenji Yamamoto" class="author-avatar">
+            <div class="author-info">
+              <h4>Kenji Yamamoto</h4>
+              <p>Food Blogger</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-content" id="testimonial3">
+            <div class="rating-stars">
+              <div class="rating-category">Overall: ★★★★★</div>
+              <div class="rating-category">Food: ★★★★★</div>
+              <div class="rating-category">Atmosphere: ★★★★★</div>
+              <div class="rating-category">Service: ★★★★★</div>
+            </div>
+            "The Namaste Set is incredible value! Every dish was bursting with authentic flavors. The tandoori chicken
+            was perfectly charred yet juicy. Will definitely be coming back!"
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Aiko Sato" class="author-avatar">
+            <div class="author-info">
+              <h4>Aiko Sato</h4>
+              <p>Local Guide</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-content" id="testimonial4">
+            <div class="rating-stars">
+              <div class="rating-category">Overall: ★★★★★</div>
+              <div class="rating-category">Food: ★★★★★</div>
+              <div class="rating-category">Atmosphere: ★★★★★</div>
+              <div class="rating-category">Service: ★★★★★</div>
+            </div>
+            "The momos here are to die for! The perfect balance of spices in the filling and the chutney is divine.
+            Service was attentive without being intrusive. A true hidden gem in Hiroshima!"
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Raj Patel" class="author-avatar">
+            <div class="author-info">
+              <h4>Raj Patel</h4>
+              <p>Frequent Visitor</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <div class="testimonial-content" id="testimonial5">
+            <div class="rating-stars">
+              <div class="rating-category">Overall: ★★★★★</div>
+              <div class="rating-category">Food: ★★★★★</div>
+              <div class="rating-category">Atmosphere: ★★★★★</div>
+              <div class="rating-category">Service: ★★★★★</div>
+            </div>
+            "The course meal was an amazing journey through Indian cuisine. Each dish was better than the last. The
+            staff explained everything perfectly. Best Indian food I've had outside of India!"
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emily Johnson" class="author-avatar">
+            <div class="author-info">
+              <h4>Emily Johnson</h4>
+              <p>Travel Enthusiast</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3 class="footer-title">Namaste Indian Restaurant</h3>
+          <p id="footer-desc">Bringing authentic Indian flavors to Hiroshima since 1998. For over 25 years, we've been
+            sharing the rich culinary heritage of India with the people of Hiroshima through traditional recipes and
+            warm hospitality.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/namasteotemachi" target="_blank" class="social-link"><i
+                class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/namastehatchobori" target="_blank" class="social-link"><i
+                class="fab fa-instagram"></i></a>
+            <a href="https://x.com/namaste_eats" target="_blank" class="social-link"><i
+                class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title" id="contact-title">Contact Us</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div id="address">
+                <strong>Otemachi:</strong> 〒730-0051 Hiroshima, Naka Ward, Otemachi, 4 Chome−1−1 Otemachi Heiwa
+                Building, 102号<br><br>
+                <strong>Hatchobori:</strong> 〒730-0013 Hiroshima, Naka Ward, Hatchobori, 11−13 アロービル
+              </div>
+              <br>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-phone"></i></div>
+              <div id="phone">
+                <strong>Otemachi:</strong> 082-236-3339<br>
+                <strong>Hatchobori:</strong> 082-222-3240
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div id="email">
+                <strong>Otemachi:</strong> namasteotemachi@gmail.com<br>
+                <strong>Hatchobori:</strong> namaste.hatchobori.ten@gmail.com
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title" id="hours-title">Opening Hours</h3>
+          <p id="hours">
+            <strong>Monday - Sunday:</strong><br>
+            11:00 AM - 3:00 PM (Lunch)<br>
+            5:00 PM - 10:00 PM (Dinner)<br><br>
+            <strong>Holidays:</strong> Open regular hours
+          </p>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 1998-2025 Namaste Indian Restaurant. <span id="rights">All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Carousel functionality
+    const carouselTrack = document.getElementById('carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const dotsContainer = document.getElementById('carousel-dots');
+
+    let currentIndex = 0;
+    const slideCount = slides.length;
+
+    // Create dots
+    for (let i = 0; i < slideCount; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.dot');
+
+    function goToSlide(index) {
+      currentIndex = index;
+      carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // Update active dot
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+      goToSlide(currentIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slideCount;
+      goToSlide(currentIndex);
+    });
+
+    // Auto-rotate carousel
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slideCount;
+      goToSlide(currentIndex);
+    }, 5000);
+
+    // Language translation
+    function setLang(lang) {
+      if (lang === 'jp') {
+        // Update all Japanese text
+        document.getElementById("discount-text").innerText = "🎉 スクリーンショット提示で20%オフ！両店舗で有効！";
+        document.getElementById("hero-title").innerText = "本格的なインド料理";
+        document.getElementById("hero-subtitle").innerText = "広島の中心で味わう、インドの活気ある味";
+        document.getElementById("hero-button").innerText = "店舗を探す";
+        document.getElementById("carousel-title").innerText = "人気料理";
+        document.getElementById("dish1-name").innerText = "バターチキン";
+        document.getElementById("dish2-name").innerText = "チキンビリヤニ";
+        document.getElementById("dish3-name").innerText = "コース料理";
+        document.getElementById("dish4-name").innerText = "モモ";
+        document.getElementById("dish5-name").innerText = "タンドリーチキン";
+        document.getElementById("dish6-name").innerText = "ナマステセット";
+        document.getElementById("branches-title").innerText = "店舗情報";
+        document.getElementById("branch1-title").innerText = "ナマステインディアン - 大手町店";
+        document.getElementById("branch1-address").innerText = "〒730-0051 広島県広島市中区大手町4丁目1−1 大手町平和ビル 102号";
+        document.getElementById("map1btn").innerText = "Googleマップで見る";
+        document.getElementById("branch2-title").innerText = "ナマステインディアン - 八丁堀店";
+        document.getElementById("branch2-address").innerText = "〒730-0013 広島県広島市中区八丁堀11−13 アロービル";
+        document.getElementById("map2btn").innerText = "Googleマップで見る";
+        document.getElementById("testimonials-title").innerText = "お客様の声";
+        document.getElementById("testimonial1").innerText = "「味が本場インドのようでした！バターチキンはクリーミーでスパイスが絶妙でした。スタッフの皆さんがとても親切で、素晴らしい食事体験ができました。」";
+        document.getElementById("testimonial2").innerText = "「最高の本格インド料理！ビリヤニは風味豊かでチキンは柔らかく、店内の雰囲気も温かく居心地が良いです。本物のインド料理を楽しみたい方に強くおすすめします。」";
+        document.getElementById("contact-title").innerText = "お問い合わせ";
+        document.getElementById("address").innerHTML = "<strong>大手町店:</strong> 〒730-0051 広島県広島市中区大手町4丁目1−1 大手町平和ビル 102号<br><strong>八丁堀店:</strong> 〒730-0013 広島県広島市中区八丁堀11−13 アロービル";
+        document.getElementById("phone").innerHTML = "<strong>大手町店:</strong> 082-236-3339<br><strong>八丁堀店:</strong> 082-765-4321";
+        document.getElementById("email").innerHTML = "<strong>大手町店:</strong> namasteotemachi@gmail.com<br><strong>八丁堀店:</strong> namaste.hatchobori.ten@gmail.com";
+        document.getElementById("hours-title").innerText = "営業時間";
+        document.getElementById("hours").innerHTML = "<strong>月曜～日曜:</strong><br>11:00～15:00 (ランチ)<br>17:00～22:00 (ディナー)<br><br><strong>祝日:</strong> 通常営業";
+        document.getElementById("footer-desc").innerText = "1998年より広島に本格的なインドの味をお届けしています。25年以上にわたり、伝統的なレシピと温かいおもてなしで広島の方々にインドの豊かな食文化を共有してまいりました。";
+        document.getElementById("rights").innerText = "無断複写・転載を禁じます。";
+      } else {
+        // Revert to English
+        document.getElementById("discount-text").innerText = "🎉 20% OFF for Screenshot Holders — Valid at both branches!";
+        document.getElementById("hero-title").innerText = "Authentic Indian Cuisine";
+        document.getElementById("hero-subtitle").innerText = "Experience the vibrant flavors of India in the heart of Hiroshima";
+        document.getElementById("hero-button").innerText = "Find Our Locations";
+        document.getElementById("carousel-title").innerText = "Popular Dishes";
+        document.getElementById("dish1-name").innerText = "Butter Chicken";
+        document.getElementById("dish2-name").innerText = "Chicken Biryani";
+        document.getElementById("dish3-name").innerText = "Course";
+        document.getElementById("dish4-name").innerText = "MOMO";
+        document.getElementById("dish5-name").innerText = "Tandoori Chicken";
+        document.getElementById("dish6-name").innerText = "Namaste Set";
+        document.getElementById("branches-title").innerText = "Our Locations";
+        document.getElementById("branch1-title").innerText = "Namaste Indian Restaurant - Otemachi Branch";
+        document.getElementById("branch1-address").innerText = "〒730-0051 Hiroshima, Naka Ward, Otemachi, 4 Chome−1−1 Otemachi Heiwa Building, 102号";
+        document.getElementById("map1btn").innerText = "View on Google Maps";
+        document.getElementById("branch2-title").innerText = "Namaste Indian Restaurant - Hatchobori Branch";
+        document.getElementById("branch2-address").innerText = "〒730-0013 Hiroshima, Naka Ward, Hatchobori, 11−13 アロービル";
+        document.getElementById("map2btn").innerText = "View on Google Maps";
+        document.getElementById("testimonials-title").innerText = "Customer Reviews";
+        document.getElementById("testimonial1").innerText = "\"The flavors transported me straight to India! The butter chicken was creamy and perfectly spiced. The staff was incredibly welcoming and made our dining experience memorable.\"";
+        document.getElementById("testimonial2").innerText = "\"Authentic Indian food at its best! The biryani was flavorful with tender chicken. The ambiance is warm and inviting. Highly recommend for anyone craving real Indian cuisine.\"";
+        document.getElementById("contact-title").innerText = "Contact Us";
+        document.getElementById("address").innerHTML = "<strong>Otemachi:</strong> 〒730-0051 Hiroshima, Naka Ward, Otemachi, 4 Chome−1−1 Otemachi Heiwa Building, 102号<br><strong>Hatchobori:</strong> 〒730-0013 Hiroshima, Naka Ward, Hatchobori, 11−13 アロービル";
+        document.getElementById("phone").innerHTML = "<strong>Otemachi:</strong> 082-236-3339<br><strong>Hatchobori:</strong> 082-765-4321";
+        document.getElementById("email").innerHTML = "<strong>Otemachi:</strong> namasteotemachi@gmail.com<br><strong>Hatchobori:</strong> namaste.hatchobori.ten@gmail.com";
+        document.getElementById("hours-title").innerText = "Opening Hours";
+        document.getElementById("hours").innerHTML = "<strong>Monday - Sunday:</strong><br>11:00 AM - 3:00 PM (Lunch)<br>5:00 PM - 10:00 PM (Dinner)<br><br><strong>Holidays:</strong> Open regular hours";
+        document.getElementById("footer-desc").innerText = "Bringing authentic Indian flavors to Hiroshima since 1998. For over 25 years, we've been sharing the rich culinary heritage of India with the people of Hiroshima through traditional recipes and warm hospitality.";
+        document.getElementById("rights").innerText = "All rights reserved.";
+      }
+    }
+  </script>
+</body>
+
+</html>
