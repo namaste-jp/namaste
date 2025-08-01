@@ -612,12 +612,14 @@
           <img src="logo.png" alt="Namaste Indian Restaurant Logo" class="logo" />
           <div class="logo-text">Namaste Indian Restaurant</div>
           <a href="https://namaste-in.jp/" class="home-button">
-            <i class="fas fa-home"></i> Go to Home
+            <center>
+              <i class="fas fa-home"></i>Home
+            </center>
           </a>
         </div>
         <div class="lang-buttons">
-          <button onclick="setLang('en')">English</button>
-          <button onclick="setLang('jp')">日本語</button>
+          <button id="english-btn" onclick="setLang('en')">English</button>
+          <button id="japanese-btn" onclick="setLang('jp')">日本語</button>
         </div>
       </nav>
     </div>
@@ -650,19 +652,23 @@
           </div>
           <div class="carousel-slide">
             <img src="menu/menu.jpg" alt="Course">
-            <p id="dish3-name">Course</p>
+            <p id="dish3-name">Course with 9 dishes and all-you-can-drink included ¥3520</p>
+          </div>
+          <div class="carousel-slide">
+            <img src="menu/menu2.png" alt="All-you-can-eat and all-you-can-drink for ¥4400">
+            <p id="dish4-name">All-you-can-eat and all-you-can-drink for ¥4400</p>
           </div>
           <div class="carousel-slide">
             <img src="menu/momo.png" alt="MOMO">
-            <p id="dish4-name">MOMO</p>
+            <p id="dish5-name">MOMO</p>
           </div>
           <div class="carousel-slide">
             <img src="menu/tandoori chciiken.jpg" alt="Tandoori Chicken">
-            <p id="dish5-name">Tandoori Chicken</p>
+            <p id="dish6-name">Tandoori Chicken</p>
           </div>
           <div class="carousel-slide">
             <img src="menu/namaste set.jpg" alt="Namaste Set">
-            <p id="dish6-name">Namaste Set</p>
+            <p id="dish7-name">Namaste Set</p>
           </div>
         </div>
       </div>
@@ -815,7 +821,7 @@
     </div>
   </section>
 
-  <footer>
+  <footer style="text-decoration: none; color: white;">
     <div class="container">
       <div class="footer-content">
         <div class="footer-column">
@@ -867,7 +873,7 @@
           <p id="hours">
             <strong>Monday - Sunday:</strong><br>
             11:00 AM - 3:00 PM (Lunch)<br>
-            5:00 PM - 10:00 PM (Dinner)<br><br>
+            5:00 PM - 21:30 PM (Dinner)<br><br>
             <strong>Holidays:</strong> Open regular hours
           </p>
         </div>
@@ -880,6 +886,38 @@
   </footer>
 
   <script>
+
+
+    // Set Japanese as default on load
+    document.addEventListener('DOMContentLoaded', function () {
+      // Check for saved language preference
+      const savedLang = localStorage.getItem('preferredLanguage');
+
+      // If no preference exists, default to Japanese and save it
+      if (!savedLang) {
+        localStorage.setItem('preferredLanguage', 'jp');
+        setLang('jp');
+      } else {
+        // Otherwise use the saved language
+        setLang(savedLang);
+      }
+    });
+
+    function setLang(lang) {
+      // Your existing language switching code here...
+
+      // Save the selected language
+      localStorage.setItem('preferredLanguage', lang);
+
+      // Keep both buttons visible at all times
+      document.getElementById('english-btn').style.display = 'inline-block';
+      document.getElementById('japanese-btn').style.display = 'inline-block';
+    }
+
+    //ends here for lang
+
+
+
     // Carousel functionality
     const carouselTrack = document.getElementById('carousel-track');
     const slides = document.querySelectorAll('.carousel-slide');
@@ -938,10 +976,11 @@
         document.getElementById("carousel-title").innerText = "人気料理";
         document.getElementById("dish1-name").innerText = "バターチキン";
         document.getElementById("dish2-name").innerText = "チキンビリヤニ";
-        document.getElementById("dish3-name").innerText = "コース料理";
-        document.getElementById("dish4-name").innerText = "モモ";
-        document.getElementById("dish5-name").innerText = "タンドリーチキン";
-        document.getElementById("dish6-name").innerText = "ナマステセット";
+        document.getElementById("dish3-name").innerText = "9品飲み放題付きコース ¥3520";
+        document.getElementById("dish4-name").innerText = "食べ放題飲み放題 ¥4400";
+        document.getElementById("dish5-name").innerText = "モモ";
+        document.getElementById("dish6-name").innerText = "タンドリーチキン";
+        document.getElementById("dish7-name").innerText = "ナマステセット";
         document.getElementById("branches-title").innerText = "店舗情報";
         document.getElementById("branch1-title").innerText = "ナマステインディアン - 大手町店";
         document.getElementById("branch1-address").innerText = "〒730-0051 広島県広島市中区大手町4丁目1−1 大手町平和ビル 102号";
@@ -950,8 +989,11 @@
         document.getElementById("branch2-address").innerText = "〒730-0013 広島県広島市中区八丁堀11−13 アロービル";
         document.getElementById("map2btn").innerText = "Googleマップで見る";
         document.getElementById("testimonials-title").innerText = "お客様の声";
-        document.getElementById("testimonial1").innerText = "「味が本場インドのようでした！バターチキンはクリーミーでスパイスが絶妙でした。スタッフの皆さんがとても親切で、素晴らしい食事体験ができました。」";
-        document.getElementById("testimonial2").innerText = "「最高の本格インド料理！ビリヤニは風味豊かでチキンは柔らかく、店内の雰囲気も温かく居心地が良いです。本物のインド料理を楽しみたい方に強くおすすめします。」";
+        document.getElementById("testimonial1").innerText = "「まるでインドに行ったような味わいでした！バターチキンはクリーミーでスパイスのバランスが完璧。スタッフの方々もとても親切で、忘れられない食事体験になりました。」";
+        document.getElementById("testimonial2").innerText = "「本格的なインド料理が楽しめます！ビリヤニは香り高く、チキンも柔らかくて絶品。温かみのある雰囲気も素晴らしく、本格的なインド料理を求めている方におすすめです。」";
+        document.getElementById("testimonial3").innerText = "「ナマステセットはコスパ最高！どの料理も本場の味がしっかり感じられました。タンドリーチキンは香ばしくジューシーで、また絶対に来たいと思います。」";
+        document.getElementById("testimonial4").innerText = "「ここのモモは本当に絶品！具のスパイス加減がちょうど良く、チャトニ（ソース）も最高でした。スタッフの気配りも素晴らしく、広島の隠れた名店です！」";
+        document.getElementById("testimonial5").innerText = "「コース料理はインド料理の旅そのものでした。どの料理も驚くほど美味しく、スタッフが丁寧に説明してくれたのも良かったです。インド以外でここまでの味に出会えるとは思いませんでした！」";
         document.getElementById("contact-title").innerText = "お問い合わせ";
         document.getElementById("address").innerHTML = "<strong>大手町店:</strong> 〒730-0051 広島県広島市中区大手町4丁目1−1 大手町平和ビル 102号<br><strong>八丁堀店:</strong> 〒730-0013 広島県広島市中区八丁堀11−13 アロービル";
         document.getElementById("phone").innerHTML = "<strong>大手町店:</strong> 082-236-3339<br><strong>八丁堀店:</strong> 082-765-4321";
@@ -969,10 +1011,11 @@
         document.getElementById("carousel-title").innerText = "Popular Dishes";
         document.getElementById("dish1-name").innerText = "Butter Chicken";
         document.getElementById("dish2-name").innerText = "Chicken Biryani";
-        document.getElementById("dish3-name").innerText = "Course";
-        document.getElementById("dish4-name").innerText = "MOMO";
-        document.getElementById("dish5-name").innerText = "Tandoori Chicken";
-        document.getElementById("dish6-name").innerText = "Namaste Set";
+        document.getElementById("dish3-name").innerText = "Course with 9 dishes and all-you-can-drink included ¥3520";
+        document.getElementById("dish4-name").innerText = "All-you-can-eat and all-you-can-drink for ¥4400";
+        document.getElementById("dish5-name").innerText = "MOMO";
+        document.getElementById("dish6-name").innerText = "Tandoori Chicken";
+        document.getElementById("dish7-name").innerText = "Namaste Set";
         document.getElementById("branches-title").innerText = "Our Locations";
         document.getElementById("branch1-title").innerText = "Namaste Indian Restaurant - Otemachi Branch";
         document.getElementById("branch1-address").innerText = "〒730-0051 Hiroshima, Naka Ward, Otemachi, 4 Chome−1−1 Otemachi Heiwa Building, 102号";
@@ -983,6 +1026,9 @@
         document.getElementById("testimonials-title").innerText = "Customer Reviews";
         document.getElementById("testimonial1").innerText = "\"The flavors transported me straight to India! The butter chicken was creamy and perfectly spiced. The staff was incredibly welcoming and made our dining experience memorable.\"";
         document.getElementById("testimonial2").innerText = "\"Authentic Indian food at its best! The biryani was flavorful with tender chicken. The ambiance is warm and inviting. Highly recommend for anyone craving real Indian cuisine.\"";
+        document.getElementById("testimonial3").innerText = "\"The Namaste Set is incredible value! Every dish was bursting with authentic flavors. The tandoori chicken was perfectly charred yet juicy. Will definitely be coming back!\"";
+        document.getElementById("testimonial4").innerText = "\"The momos here are to die for! The perfect balance of spices in the filling and the chutney is divine. Service was attentive without being intrusive. A true hidden gem in Hiroshima!\"";
+        document.getElementById("testimonial5").innerText = "\"The course meal was an amazing journey through Indian cuisine. Each dish was better than the last. The staff explained everything perfectly. Best Indian food I've had outside of India!\"";
         document.getElementById("contact-title").innerText = "Contact Us";
         document.getElementById("address").innerHTML = "<strong>Otemachi:</strong> 〒730-0051 Hiroshima, Naka Ward, Otemachi, 4 Chome−1−1 Otemachi Heiwa Building, 102号<br><strong>Hatchobori:</strong> 〒730-0013 Hiroshima, Naka Ward, Hatchobori, 11−13 アロービル";
         document.getElementById("phone").innerHTML = "<strong>Otemachi:</strong> 082-236-3339<br><strong>Hatchobori:</strong> 082-765-4321";
